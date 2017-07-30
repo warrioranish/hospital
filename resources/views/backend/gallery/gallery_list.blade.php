@@ -35,13 +35,13 @@
                                                 <td>{{$g->name}}</td>
                                                 <td>{{($g->status == 1) ? "active" : "inactive"}}</td>
                                                 <td class="td-actions">
-                                                    <a type="button" rel="tooltip" class="btn btn-info btn-round" href="" title="images list">
+                                                    <a type="button" rel="tooltip" class="btn btn-info btn-round" href="{{ url('admin/gallery/images/'.$g->id) }}" title="{{ $g->name }} images">
                                                         <i class="material-icons">call_made</i>
                                                     </a>
                                                     <a type="button" rel="tooltip" class="btn btn-success btn-round" href="{{ url('admin/gallery/edit/'.$g->id) }}" title="edit gallery">
                                                         <i class="material-icons">edit</i>
                                                     </a>
-                                                    <a type="button" rel="tooltip" class="btn btn-danger btn-round delete-sliders" href="" title="delete gallery">
+                                                    <a type="button" rel="tooltip" class="btn btn-danger btn-round delete-sliders" href="{{ url('admin/gallery/delete/'.$g->id) }}" title="delete gallery">
                                                         <i class="material-icons">close</i>
                                                     </a>
                                                 </td>
@@ -50,7 +50,7 @@
                                     @else
                                         <tr>
                                             <td colspan="5" class="text-center">
-                                                <h4>There are no sliders added yet, click <a href="{{route('createsliders')}}">here</a> to add one</h4>
+                                                <h4>There are no gallery added yet, click <a href="{{route('creategallery')}}">here</a> to add one</h4>
                                             </td>
                                         </tr>
                                     @endif
@@ -73,7 +73,7 @@
             $('.flash-message').slideUp('slow');
 
             $('.delete-sliders').click(function () {
-                var sure = confirm('Do you really want to delete this slider!');
+                var sure = confirm('Do you really want to delete this gallery!');
                 if(!sure)
                     return false;
             });

@@ -29,10 +29,10 @@
                                             <div class="form-group">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="status" value="1" {{ ($gallery->status == 1) ? 'checked="true"' : '' }}> active &nbsp;
+                                                        <input type="radio" name="status" value="1" checked="true"> active &nbsp;
                                                     </label>
                                                     <label>
-                                                        <input type="radio" name="status" value="0" {{ ($gallery->status == 0) ? 'checked="true"' : '' }}> inactive
+                                                        <input type="radio" name="status" value="0"> inactive
                                                     </label>
                                                 </div>
                                             </div>

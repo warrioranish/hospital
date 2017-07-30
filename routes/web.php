@@ -121,6 +121,15 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::patch('gallery/update/{id}', 'Backend\GalleryController@update')->name('updategallery');
 
+    Route::get('gallery/delete/{id}', 'Backend\GalleryController@destroy')->name('deletegallery');
+
+    //images
+    Route::get('gallery/images/{id}', 'Backend\ImageController@index')->name('images');
+
+    Route::get('gallery/images/add/{id}', 'Backend\ImageController@create')->name('createimages');
+
+
+
 
 
 });

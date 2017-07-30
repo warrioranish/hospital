@@ -95,7 +95,7 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                             <a href="{{ route('gallery') }}">List All</a>
                         </li>
                         <li>
-                            <a href="">Add Gallery</a>
+                            <a href="{{ route('creategallery') }}">Add Gallery</a>
                         </li>
                     </ul>
                 </div>
