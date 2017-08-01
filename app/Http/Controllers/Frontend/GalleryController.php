@@ -29,14 +29,24 @@ class GalleryController extends Controller
 
     public function index() {
         $gallery = $this->galleryRepository->get_gallery(true);
-        $images = $this->imageRepository->get_images(true, NULL);
-        return view('frontend.gallery', compact('images', 'gallery') );
+
+        return view('frontend.gallery', compact('gallery') );
     }
 
-    public function single(Image $id) {
-        $gallery = $this->imageRepository->GalleryNameAndId($id->id);
-        $gallery_images = $this->galleryRepository->gallery_images($gallery['id']);
+    public function gallerylist($slug) {
+        $gallery = $this->galleryRepository->get_galleryIdbyslug($slug);
 
-        return view('frontend.gallery_single', ['image' => $id, 'gallery_images' => $gallery_images]);
+        $images = $gallery->images;
+        $gallery_name = $gallery['name'];
+        return view('frontend.gallery_list', compact('images', 'gallery_name'));
+    }
+
+    public function single(Image $slug) {
+
+        $gallery= $this->imageRepository->GalleryNameAndId($slug->id);
+
+        $gallery_images = $gallery->images;
+
+        return view('frontend.gallery_single', ['image' => $slug, 'gallery_images' => $gallery_images, 'gallery' => $gallery]);
     }
 }

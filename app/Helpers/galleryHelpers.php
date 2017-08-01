@@ -11,12 +11,26 @@ function ImagesNum($id) {
 }
 
 function GalleryNameAndId($id) {
+    $gallery = Image::find($id)->gallery()->select('id', 'name')->first();
 
-    $gallery_id = Image::where('id', '=', $id)->value('gallery_id');
+    return $gallery;
 
-    $gallery_name = Gallery::where('id', '=', $gallery_id)->value('name');
+//    $gallery_id = Image::where('id', '=', $id)->value('gallery_id');
+//
+//    $gallery_name = Gallery::where('id', '=', $gallery_id)->value('name');
+//
+//    return [ 'gallery_id' => $gallery_id, 'gallery_name' => $gallery_name];
 
-    return [ 'gallery_id' => $gallery_id, 'gallery_name' => $gallery_name];
+}
+
+function RandomImage($id) {
+    $image = Gallery::find($id)->images()->inRandomOrder()->first();
+
+    return $image;
+}
 
 
+function Galleries() {
+
+    return Gallery::where('status', '=', 1)->get();
 }

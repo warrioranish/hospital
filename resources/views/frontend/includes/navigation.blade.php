@@ -398,9 +398,11 @@
                                 <li>
                                     <a href="{{ url('/gallery') }}">Gallery</a>
                                     <ul>
-                                        <li>
-                                            <a href="single-service.html">Cardio Monitoring</a>
-                                        </li>
+                                        @foreach(Galleries() as $g)
+                                            <li>
+                                                <a href="{{ url('/gallery/'.$g->slug) }}">{{ $g->name }}</a>
+                                            </li>
+                                        @endforeach
                                     </ul>
                                 </li>
                                 <!-- eof gallery -->

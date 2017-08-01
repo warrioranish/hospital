@@ -42,4 +42,10 @@ class GalleryRepository
         return $query;
     }
 
+    public function get_galleryIdbyslug($slug) {
+        $query = $this->gallery->where('slug', $slug)->select('id', 'name')->first();
+
+        return $query;
+    }
+
 }

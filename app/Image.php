@@ -40,4 +40,8 @@ class Image extends Model
     public function gallery() {
         return $this->belongsTo('App\Gallery');
     }
+
+    public function getRouteKeyName() {
+        return 'slug';
+    }
 }

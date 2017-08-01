@@ -109,7 +109,7 @@ class ImageController extends Controller
             'title' => 'required',
             'description' => 'required'
         ]);
-
+         $id->slug=null;
         $id->title = $request->title;
         if($request->hasFile('image')) {
             if($request->file('image')->isValid()) {

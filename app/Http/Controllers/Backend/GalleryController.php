@@ -84,7 +84,7 @@ class GalleryController extends Controller
         ]);
 
         $input = $request->all();
-
+        $id->slug=null;
         $id->update($input);
 
         return redirect()->route('gallery')->with('status', 'Gallery edited successfully');

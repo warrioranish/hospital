@@ -8,14 +8,17 @@
                 <div class="col-sm-12 text-center">
                     <ol class="breadcrumb greylinks">
                         <li>
-                            <a href="./">
+                            <a href="{{ url('/home') }}">
                                 Home
                             </a>
                         </li>
                         <li>
-                            <a href="#">Gallery</a>
+                            <a href="{{ url('/gallery') }}">Gallery</a>
                         </li>
-                        <li class="active"> Single Item</li>
+                        <li>
+                            <a href="{{ url('/gallery/'.$gallery['slug']) }}"> {{ $gallery['name'] }}</a>
+                        </li>
+                        <li class="active"> {{ $image->title }}</li>
                     </ol>
                 </div>
             </div>
@@ -34,7 +37,7 @@
                         </h1>
 
                         <div class="categories-links highlight3 small-text highlight3 bottommargin_40">
-                            <a rel="category" href="blog-right.html">{{ GalleryNameAndId($image->id)['gallery_name'] }}</a>
+                            <a rel="category" href="{{ url('/gallery/'.$gallery['slug']) }}">{{ GalleryNameAndId($image->id)['name'] }}</a>
                         </div>
 
                         <div class="vertical-item gallery-extended-item content-padding with_background bottom-rounded">
@@ -63,17 +66,17 @@
         </section>
     @endif
 
-    @if($gallery_images)
+    @if(count($gallery_images) > 3)
         <section class="ls section_padding_100">
             <div class="owl-carousel related-photos-carousel" data-margin="0" data-nav="true" data-loop="true" data-items="3">
-                @foreach($gallery_images as $img)
+                @foreach($gallery_images as $i=>$img)
                     <div>
                         <div class="vertical-item gallery-title-item content-absolute">
                             <div class="item-media">
                                 <img src="{{ asset('uploads/images/gallery/'.$img->image) }}" alt="">
                                 <div class="media-links">
                                     <div class="links-wrap">
-                                        <a class="p-view prettyPhoto " title="slideshow {{ GalleryNameAndId($img->id)['gallery_name'] }}" data-gal="prettyPhoto[gal]" href="{{ asset('uploads/images/gallery/'.$img->image) }}"></a>
+                                        <a class="p-view prettyPhoto " title="slideshow {{ GalleryNameAndId($img->id)['name'] }}" data-gal="prettyPhoto[{{$i}}]" href="{{ asset('uploads/images/gallery/'.$img->image) }}"></a>
                                         <a class="p-link" title="view image" href="{{ url('/gallery/single/'.$img->id) }}"></a>
                                     </div>
                                 </div>

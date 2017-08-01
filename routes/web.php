@@ -34,7 +34,9 @@ Route::get('/faq', 'Frontend\FaqController@index');
 
 Route::get('/gallery', 'Frontend\GalleryController@index');
 
-Route::get('/gallery/single/{id}', 'Frontend\GalleryController@single');
+Route::get('/gallery/{slug}', 'Frontend\GalleryController@gallerylist');
+
+Route::get('/gallery/single/{slug}', 'Frontend\GalleryController@single');
 
 
 

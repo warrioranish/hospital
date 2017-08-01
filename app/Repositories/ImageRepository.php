@@ -38,11 +38,9 @@ class ImageRepository
 
     public function GalleryNameAndId($id) {
 
-        $gallery_id = Image::where('id', '=', $id)->value('gallery_id');
+        $gallery = Image::find($id)->gallery()->select('id', 'name', 'slug')->get();
 
-        $gallery_name = Gallery::where('id', '=', $gallery_id)->value('name');
-
-        return [ 'id' => $gallery_id, 'name' => $gallery_name];
+        return $gallery[0];
     }
 
 }
