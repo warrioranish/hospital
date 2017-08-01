@@ -22,9 +22,10 @@
                                 <table class="table">
                                     <thead class="text-primary">
                                     <tr>
-                                        <th width="33%">Name</th>
-                                        <th width="33%">status</th>
-                                        <th width="33%">Actions</th>
+                                        <th width="25%%">Name</th>
+                                        <th width="25%%">No. of Images</th>
+                                        <th width="25%%">status</th>
+                                        <th width="25%">Actions</th>
                                     </tr>
                                     </thead>
                                     <tbody>
@@ -33,6 +34,7 @@
                                         @foreach($gallery as $g)
                                             <tr>
                                                 <td>{{$g->name}}</td>
+                                                <td>{{ ImagesNum($g->id) }}</td>
                                                 <td>{{($g->status == 1) ? "active" : "inactive"}}</td>
                                                 <td class="td-actions">
                                                     <a type="button" rel="tooltip" class="btn btn-info btn-round" href="{{ url('admin/gallery/images/'.$g->id) }}" title="{{ $g->name }} images">

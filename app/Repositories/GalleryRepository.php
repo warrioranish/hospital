@@ -36,4 +36,10 @@ class GalleryRepository
         return $query;
     }
 
+    public function gallery_images($id) {
+        $query = $this->gallery->find($id)->images()->where('status', '=', 1)->orderBy('created_at', 'DESC')->get();
+
+        return $query;
+    }
+
 }

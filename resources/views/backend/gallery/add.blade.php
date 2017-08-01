@@ -9,17 +9,17 @@
                         <div class="card-header card-header-icon" data-background-color="green">
                             <i class="material-icons">insert_photo</i>
                         </div>
-                        <h4 class="card-title"><a href="{{ route('gallery') }}">Gallery</a> / <a href="{{ route('images', ['id' => $gallery->id]) }}">{{ $gallery->name }}</a> /add</h4>
+                        <h4 class="card-title"><a href="{{ route('gallery') }}">Gallery</a> / <a href="{{ route('images', ['id' => $gallery->id]) }}"> {{ $gallery->name }}</a> / add</h4>
                         <br>
                         <div class="card-content">
                             <div class="container-fluid">
-                                <form id="add_form" class="form-horizontal" method="POST" action="{{ route('storegallery') }}" enctype="multipart/form-data">
+                                <form id="add_form" class="form-horizontal" method="POST" action="{{ route('storeimages', ['id' => $gallery->id]) }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="row">
-                                        <label class="col-md-1 label-on-left">Title<span class="asterisk">*</span></label>
+                                        <label class="col-md-1 label-on-left">title <span class="asterisk">*</span></label>
                                         <div class="col-md-11">
                                             <div class="form-group label-floating is-empty">
-                                                <input type="text" name="name" class="form-control" autocomplete="off" required>
+                                                <input type="text" name="title" class="form-control" autocomplete="off" required>
                                             </div>
                                         </div>
                                     </div>
@@ -37,7 +37,7 @@
                                         <div class="col-md-11">
                                             <div class="form-group">
                                                 <label class="control-label"></label>
-                                                <textarea name="description" id="image_description"></textarea>
+                                                <textarea name="description" id="description"></textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -61,7 +61,7 @@
                                         <label class="col-md-1"></label>
                                         <div class="col-md-11">
                                             <div class="form-group form-button">
-                                                <button type="submit" class="btn btn-fill btn-rose">Submit</button>
+                                                <button type="submit" id="submit_btn" class="btn btn-fill btn-rose">Submit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -75,9 +75,36 @@
     </div>
 
     <script>
-        CKEDITOR.replace('image_description');
+        CKEDITOR.replace('description');
 
+        $('#submit_btn').click(function () {
+           CKEDITOR.instances.description.updateElement();
+        });
 
+        $('#add_form').validate({
+            ignore: [],
+            rules: {
+               title: {
+                   required: true
+               },
+                image: {
+                   required: true
+                },
+                description: {
+                    required: true
+                }
+            },
+            messages: {
+                title: {
+                    required: 'Title field is required'
+                },
+                image: {
+                    required: 'Image is required'
+                },
+                description: {
+                    required: 'Description field is required'
+                }
+            }
+        });
     </script>
-
 @endsection

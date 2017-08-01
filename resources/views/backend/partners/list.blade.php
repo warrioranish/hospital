@@ -25,7 +25,7 @@
                                         <th width="15%">Name</th>
                                         <th width="25%">Thumbnail</th>
                                         <th width="30%">Url</th>
-                                        <th width="15%">status</th>
+                                        <th width="15%">Status</th>
                                         <th width="15%">Actions</th>
                                     </tr>
                                     </thead>

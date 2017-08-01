@@ -34,7 +34,7 @@ Route::get('/faq', 'Frontend\FaqController@index');
 
 Route::get('/gallery', 'Frontend\GalleryController@index');
 
-Route::get('/gallery/single', 'Frontend\GalleryController@single');
+Route::get('/gallery/single/{id}', 'Frontend\GalleryController@single');
 
 
 
@@ -128,9 +128,13 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::get('gallery/images/add/{id}', 'Backend\ImageController@create')->name('createimages');
 
+    Route::post('gallery/images/add/{id}', 'Backend\ImageController@store')->name('storeimages');
 
+    Route::get('gallery/images/edit/{id}', 'Backend\ImageController@edit')->name('editimages');
 
+    Route::patch('gallery/images/update/{id}', 'Backend\ImageController@update')->name('updateimages');
 
+    Route::get('gallery/images/delete/{id}', 'Backend\ImageController@destroy')->name('deleteimages');
 
 });
 

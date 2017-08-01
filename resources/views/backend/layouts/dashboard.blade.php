@@ -68,7 +68,7 @@
                             </div>
                             <div class="card-content">
                                 <p class="category">Gallery</p>
-                                <h3 class="card-title"><br></h3>
+                                <h3 class="card-title">{{ $gallery_count }}</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">

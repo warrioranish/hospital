@@ -52,7 +52,7 @@
                                         <label class="col-md-1"></label>
                                         <div class="col-md-11">
                                             <div class="form-group form-button">
-                                                <button type="submit" class="btn btn-fill btn-rose">Submit</button>
+                                                <button type="submit" id="submit_btn" class="btn btn-fill btn-rose">Submit</button>
                                             </div>
                                         </div>
                                     </div>
@@ -68,14 +68,19 @@
     <script>
         CKEDITOR.replace('answer');
 
+        $('#submit_btn').click(function(){
+           CKEDITOR.instances.faqanswer.updateElement();
+        });
+
         $('#add_form').validate({
-            ignore: "input:hidden:not(input:hidden.required)",
+//            ignore: "input:hidden:not(input:hidden.required)",
+            ignore: [],
             rules: {
                 question: {
                     required: true
                 },
                 answer: {
-                    required: true,
+                    required: true
                 }
             },
             messages: {

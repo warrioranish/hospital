@@ -40,8 +40,9 @@ class AdminController extends Controller
         $slider_count = DB::table('sliders')->count();
         $partner_count = DB::table('partners')->count();
         $faq_count = DB::table('faqs')->count();
+        $gallery_count = DB::table('galleries')->count();
 
-        return view('backend.layouts.dashboard', compact('contacts_count', 'testimonial_count', 'slider_count', 'partner_count', 'faq_count'));
+        return view('backend.layouts.dashboard', compact('contacts_count', 'testimonial_count', 'slider_count', 'partner_count', 'faq_count', 'gallery_count'));
     }
 
     public function destroy(){

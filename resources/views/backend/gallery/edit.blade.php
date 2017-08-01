@@ -6,30 +6,46 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="card">
-                        <div class="card-header card-header-icon" data-background-color="grey">
-                            <i class="material-icons">question_answer</i>
+                        <div class="card-header card-header-icon" data-background-color="green">
+                            <i class="material-icons">insert_photo</i>
                         </div>
-                        <h4 class="card-title"><a href="{{ route('faq') }}">Faq</a> / edit</h4>
+                        <h4 class="card-title"><a href="{{ route('gallery') }}">Gallery</a> / <a href="{{ route('images', ['id' => $galleryId]) }}"> {{ $galleryName }}</a> / edit</h4>
                         <br>
                         <div class="card-content">
                             <div class="container-fluid">
-                                <form id="edit_form" class="form-horizontal" method="POST" action="{{ route('updatefaqs', ['id' => $faq->id]) }}" enctype="multipart/form-data">
+                                <form id="edit_form" class="form-horizontal" method="POST" action="{{ route('updateimages', ['id' => $image->id]) }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     {{ method_field('PATCH') }}
                                     <div class="row">
-                                        <label class="col-md-1 label-on-left">Question<span class="asterisk">*</span></label>
+                                        <label class="col-md-1 label-on-left">title <span class="asterisk">*</span></label>
                                         <div class="col-md-11">
                                             <div class="form-group label-floating is-empty">
-                                                <textarea name="question" class="form-control" id="" cols="30" rows="3" placeholder="Question goes here ?">{{ $faq->question }}</textarea>
+                                                <input type="text" name="title" class="form-control" value="{{ $image->title }}" autocomplete="off" required>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <br>
+                                    <div class="row">
+                                        <label class="col-md-1 label-on-left"></label>
+                                        <div class="col-md-11">
+                                            <img src="{{ asset('uploads/images/gallery/'.$image->image) }}" style="width:500px;" alt="">
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <label class="col-md-1 label-on-left">Image <span class="asterisk">*</span></label>
+                                        <div class="col-md-11">
+                                            <div>
+                                                <label class="control-label"></label>
+                                                <input type="file" name="image" value="upload">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <label class="col-md-1 label-on-left">Answer<span class="asterisk">*</span></label>
+                                        <label class="col-md-1 label-on-left">Description<span class="asterisk">*</span></label>
                                         <div class="col-md-11">
                                             <div class="form-group">
                                                 <label class="control-label"></label>
-                                                <textarea name="answer" id="faqanswer">{!! $faq->answer !!}</textarea>
+                                                <textarea name="description" id="image_description">{!! $image->description !!}</textarea>
                                             </div>
                                         </div>
                                     </div>
@@ -39,10 +55,10 @@
                                             <div class="form-group">
                                                 <div class="radio">
                                                     <label>
-                                                        <input type="radio" name="status" value="1" {{ ($faq->status == 1) ? 'checked="true"' : '' }}> active &nbsp;
+                                                        <input type="radio" name="status" value="1" {{ ($image->status == 1) ? 'checked="true"' : '' }}> active &nbsp;
                                                     </label>
                                                     <label>
-                                                        <input type="radio" name="status" value="0" {{ ($faq->status == 0) ? 'checked="true"' : '' }}> inactive
+                                                        <input type="radio" name="status" value="0" {{ ($image->status == 0) ? 'checked="true"' : '' }}> inactive
                                                     </label>
                                                 </div>
                                             </div>
@@ -67,29 +83,29 @@
     </div>
 
     <script>
-        var editor = CKEDITOR.replace('answer');
-        editor.on('change', function(evt) { $('#faqanswer').html(this.getData().toString());});
+        var editor = CKEDITOR.replace('image_description');
+        editor.on('change', function(evt) { $('#image_description').html(this.getData().toString());});
 
-        $('#submit_btn').click(function() {
-            CKEDITOR.instances.faqanswer.updateElement();
+        $('#submit_btn').click(function () {
+            CKEDITOR.instances.image_description.updateElement();
         });
 
         $('#edit_form').validate({
             ignore: [],
             rules: {
-                question: {
+                title: {
                     required: true
                 },
-                answer: {
+                description: {
                     required: true
                 }
             },
-            messages:{
-                question: {
-                    required: 'question field is required'
+            messages: {
+                title: {
+                    required: 'Title field is required'
                 },
-                answer: {
-                    required: 'answer field is required'
+                description: {
+                    required: 'Description field is required'
                 }
             }
         });
