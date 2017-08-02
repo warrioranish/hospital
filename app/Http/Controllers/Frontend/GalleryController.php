@@ -33,10 +33,12 @@ class GalleryController extends Controller
         return view('frontend.gallery', compact('gallery') );
     }
 
-    public function gallerylist($slug) {
-        $gallery = $this->galleryRepository->get_galleryIdbyslug($slug);
+    public function gallerylist($gallery_slugs) {
 
-        $images = $gallery->images;
+        $gallery = $this->galleryRepository->get_galleryIdbyslug($gallery_slugs);
+
+        $images = $gallery->images()->paginate(12);
+
         $gallery_name = $gallery['name'];
         return view('frontend.gallery_list', compact('images', 'gallery_name'));
     }

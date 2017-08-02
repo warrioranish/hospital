@@ -22,9 +22,9 @@
                                 <table class="table">
                                     <thead class="text-primary">
                                     <tr>
-                                        <th width="25%">Title</th>
+                                        <th width="20%">Title</th>
                                         <th width="20%">Thumbnail</th>
-                                        <th width="30%">Description</th>
+                                        <th width="35%">Description</th>
                                         <th width="10%">Status</th>
                                         <th width="15%">Actions</th>
                                     </tr>

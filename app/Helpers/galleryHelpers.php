@@ -32,5 +32,5 @@ function RandomImage($id) {
 
 function Galleries() {
 
-    return Gallery::where('status', '=', 1)->get();
+    return Gallery::where('status', '=', 1)->orderBy('created_at', 'DESC')->get();
 }

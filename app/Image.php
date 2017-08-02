@@ -41,7 +41,7 @@ class Image extends Model
         return $this->belongsTo('App\Gallery');
     }
 
-    public function getRouteKeyName() {
-        return 'slug';
-    }
+//    public function getRouteKeyName() {
+//        return ['id' => 'id','slug' => 'slug'];
+//    }
 }

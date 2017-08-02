@@ -76,19 +76,19 @@
                                 <img src="{{ asset('uploads/images/gallery/'.$img->image) }}" alt="">
                                 <div class="media-links">
                                     <div class="links-wrap">
-                                        <a class="p-view prettyPhoto " title="slideshow {{ GalleryNameAndId($img->id)['name'] }}" data-gal="prettyPhoto[{{$i}}]" href="{{ asset('uploads/images/gallery/'.$img->image) }}"></a>
-                                        <a class="p-link" title="view image" href="{{ url('/gallery/single/'.$img->id) }}"></a>
+                                        <a class="p-view prettyPhoto " title="slideshow {{ GalleryNameAndId($img->id)['name'] }}" data-gal="prettyPhoto[gal]" href="{{ asset('uploads/images/gallery/'.$img->image) }}"></a>
+                                        <a class="p-link" title="view image" href="{{ url('/gallery/single/'.$img->slug) }}"></a>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="item-title text-center">
                             <h3>
-                                <a href="gallery-single.html">{{ $img->title }}</a>
+                                <a href="{{ url('/gallery/single/'.$img->slug) }}">{{ $img->title }}</a>
                             </h3>
-                            {{--<span class="categories-links highlight3 small-text">--}}
-                                {{--<a rel="category" href="gallery-fullwidth-4-cols.html">{{ GalleryNameAndId($img->id)['gallery_name'] }}</a>--}}
-                            {{--</span>--}}
+                            <span class="categories-links highlight3 small-text">
+                                <a rel="category" href="{{ url('/gallery/'.$gallery['slug']) }}">{{ GalleryNameAndId($img->id)['name'] }}</a>
+                            </span>
                         </div>
                     </div>
                 @endforeach

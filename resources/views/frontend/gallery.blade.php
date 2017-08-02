@@ -39,7 +39,7 @@
                                                     <a rel="category" href="{{ url('/gallery/'.$g->slug) }}">{{ $g->name }}</a>
                                                 </span>
                                         <h3 class="item-title topmargin_0">
-                                            <a href="gallery-single.html">{{$random_image['title'] }}</a>
+                                            <a href="{{ url('/gallery/single/'.$random_image['slug']) }}">{{$random_image['title'] }}</a>
                                         </h3>
 
                                         <p>{!! $random_image['description'] !!}</p>

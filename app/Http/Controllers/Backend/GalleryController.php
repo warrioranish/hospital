@@ -19,6 +19,7 @@ class GalleryController extends Controller
     {
 
         $this->galleryRepository = $galleryRepository;
+
     }
 
     /**
@@ -98,6 +99,18 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $id)
     {
+
+        $gallery_images = Gallery::find($id->id)->images;
+
+        foreach($gallery_images as $img) {
+
+            $img->delete();
+
+            if(file_exists(public_path().'/uploads/images/gallery/'.$img->image)){
+                @unlink(public_path().'/uploads/images/gallery/'.$img->image);
+            }
+        }
+
         $id->delete();
 
         $delete = true;
