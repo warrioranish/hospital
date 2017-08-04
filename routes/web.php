@@ -71,7 +71,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::patch('testimonials/update/{id}', 'Backend\TestimonialController@update')->name('updatetestimonials');
 
-    Route::get('testimonial/delete/{id}', 'Backend\TestimonialController@destroy')->name('deletetestimonials');
+    Route::delete('testimonial/delete/{id}', 'Backend\TestimonialController@destroy')->name('deletetestimonials');
 
     //Slider routes
     Route::get('sliders', 'Backend\SliderController@index')->name('sliders');
@@ -84,7 +84,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::patch('sliders/update/{id}', 'Backend\SliderController@update')->name('updatesliders');
 
-    Route::get('sliders/delete/{id}', 'Backend\SliderController@destroy')->name('deleteslider');
+    Route::delete('sliders/delete/{id}', 'Backend\SliderController@destroy')->name('deleteslider');
 
     //Partner routes
     Route::get('partners', 'Backend\PartnerController@index')->name('partners');
@@ -97,7 +97,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::patch('partners/update/{id}', 'Backend\PartnerController@update')->name('updatepartners');
 
-    Route::get('partners/delete/{id}', 'Backend\PartnerController@destroy')->name('deletepartners');
+    Route::delete('partners/delete/{id}', 'Backend\PartnerController@destroy')->name('deletepartners');
 
     //faq
     Route::get('faq', 'Backend\FaqController@index')->name('faq');
@@ -110,7 +110,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::patch('faq/update/{id}', 'Backend\FaqController@update')->name('updatefaqs');
 
-    Route::get('faq/delete/{id}', 'Backend\FaqController@destroy')->name('deletefaqs');
+    Route::delete('faq/delete/{id}', 'Backend\FaqController@destroy')->name('deletefaqs');
 
     //Gallery
     Route::get('gallery', 'Backend\GalleryController@index')->name('gallery');
@@ -123,7 +123,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::patch('gallery/update/{id}', 'Backend\GalleryController@update')->name('updategallery');
 
-    Route::get('gallery/delete/{id}', 'Backend\GalleryController@destroy')->name('deletegallery');
+    Route::delete('gallery/delete/{id}', 'Backend\GalleryController@destroy')->name('deletegallery');
 
     //images
     Route::get('gallery/images/{id}', 'Backend\ImageController@index')->name('images');
@@ -136,7 +136,7 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::patch('gallery/images/update/{id}', 'Backend\ImageController@update')->name('updateimages');
 
-    Route::get('gallery/images/delete/{id}', 'Backend\ImageController@destroy')->name('deleteimages');
+    Route::delete('gallery/images/delete/{id}', 'Backend\ImageController@destroy')->name('deleteimages');
 
 });
 

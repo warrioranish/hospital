@@ -67,7 +67,7 @@ class PartnerController extends Controller
             }
         }
         $partners->image = $filename;
-        $partners->url =($request->url == '') ? 'javascript:void(0)' : $request->url;
+        $partners->url = $request->url;
         $partners->status = $request->status;
         $partners->save();
 
@@ -113,7 +113,7 @@ class PartnerController extends Controller
                 $id->image = $filename;
             }
         }
-        $id->url = ($request->url == '') ? 'javascript:void(0)' : $request->url;
+        $id->url = $request->url;
         $id->status = $request->status;
         $id->save();
 

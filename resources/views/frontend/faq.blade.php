@@ -8,14 +8,11 @@
                 <div class="col-sm-12 text-center">
                     <ol class="breadcrumb greylinks">
                         <li>
-                            <a href="./">
+                            <a href="{{ url('/home') }}">
                                 Home
                             </a>
                         </li>
-                        <li>
-                            <a href="#">Pages</a>
-                        </li>
-                        <li class="active"> FAQ 2</li>
+                        <li class="active"> FAQ </li>
                     </ol>
                 </div>
             </div>

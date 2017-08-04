@@ -13,8 +13,17 @@
                         <br>
                         <div class="card-content">
                             @if(session('status'))
-                                <h5 class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} text-center flash-message">{{session('status')}}</h5>
+                                <div class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} alert-with-icon text-center flash-message" data-notify="container">
+                                    <i class="material-icons" data-notify="icon">notifications</i>
+                                    <button type="button" aria-hidden="true" class="close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span data-notify="message">{{session('status')}}.</span>
+                                </div>
                             @endif
+                            {{--@if(session('status'))--}}
+                                {{--<h5 class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} text-center flash-message">{{session('status')}}</h5>--}}
+                            {{--@endif--}}
                             <div class="row">
                                 <a href="{{route('creategallery')}}" class="btn btn-primary pull-right">Add Gallery</a>
                             </div>
@@ -37,15 +46,25 @@
                                                 <td>{{ ImagesNum($g->id) }}</td>
                                                 <td>{{($g->status == 1) ? "active" : "inactive"}}</td>
                                                 <td class="td-actions">
+
                                                     <a type="button" rel="tooltip" class="btn btn-info btn-round" href="{{ url('admin/gallery/images/'.$g->id) }}" title="{{ $g->name }} images">
                                                         <i class="material-icons">call_made</i>
                                                     </a>
+
                                                     <a type="button" rel="tooltip" class="btn btn-success btn-round" href="{{ url('admin/gallery/edit/'.$g->id) }}" title="edit gallery">
                                                         <i class="material-icons">edit</i>
                                                     </a>
-                                                    <a type="button" rel="tooltip" class="btn btn-danger btn-round delete-sliders" href="{{ url('admin/gallery/delete/'.$g->id) }}" title="delete gallery">
-                                                        <i class="material-icons">close</i>
-                                                    </a>
+
+                                                    <form id="delete_form" action="{{ url('admin/gallery/delete/'.$g->id) }}" method="POST" style="display:inline-block">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-round delete-gallery" title="delete gallery"><i class="material-icons">delete</i></button>
+                                                    </form>
+
+
+                                                    {{--<a type="button" rel="tooltip"  href="javascript:void(0)" data-href="{{ url('admin/gallery/delete/'.$g->id) }}" >--}}
+                                                        {{--<i class="material-icons">delete</i>--}}
+                                                    {{--</a>--}}
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -65,20 +84,34 @@
                         @endif
                     </div>
                 </div>
-            </div>
         </div>
     </div>
 
     <script>
         $(function () {
 
-            $('.flash-message').slideUp('slow');
+            $('.flash-message').slideUp(1000, 'swing');
 
-            $('.delete-sliders').click(function () {
-                var sure = confirm('Do you really want to delete this gallery!');
-                if(!sure)
-                    return false;
+            $('.delete-gallery').click(function(e) {
+                e.preventDefault();
+//                var link = $(this);
+                swal({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        type: 'warning',
+                        showCancelButton: true,
+                        confirmButtonClass: 'btn btn-success',
+                        cancelButtonClass: 'btn btn-danger',
+                        confirmButtonText: 'Yes, delete it!',
+                        buttonsStyling: false
+                    }).then(function(){
+                            console.log('hello');
+                            $('#delete_form').submit();
+//                            var href = link.attr('data-href');
+//                            window.location= href;
+                    });
             });
         })
     </script>
+
 @endsection

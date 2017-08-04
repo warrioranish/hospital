@@ -99,7 +99,6 @@ class GalleryController extends Controller
      */
     public function destroy(Gallery $id)
     {
-
         $gallery_images = Gallery::find($id->id)->images;
 
         foreach($gallery_images as $img) {

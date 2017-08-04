@@ -5,7 +5,7 @@
                 <div class="col-sm-12 text-center">
                     <div class="owl-carousel partners-carousel" data-responsive-lg="6" data-responsive-md="4" data-responsive-sm="3" data-responsive-xs="2">
                         @foreach($partners as $p)
-                            <a href="{{$p->url}}" target="_blank">
+                            <a href="{{($p->url == '') ? 'javascript:void(0)' : $p->url}}" {{ ($p->url == '') ? '': 'target="_blank"'}}>
                                 <img src="{{asset('uploads/images/partners/'.$p->image)}}" alt="" />
                             </a>
                         @endforeach

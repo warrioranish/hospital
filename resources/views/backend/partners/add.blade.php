@@ -23,12 +23,23 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <br>
                                     <div class="row">
                                         <label class="col-md-1 label-on-left">Image <span class="asterisk">*</span></label>
                                         <div class="col-md-11">
-                                            <div>
-                                                <label class="control-label"></label>
-                                                <input type="file" name="image" value="upload" required>
+                                            <div class="fileinput fileinput-new text-center" data-provides="fileinput">
+                                                <div class="fileinput-new thumbnail">
+
+                                                </div>
+                                                <div class="fileinput-preview fileinput-exists thumbnail"></div>
+                                                <div class="upload">
+                                                    <span class="btn btn-rose btn-round btn-file">
+                                                        <span class="fileinput-new">Select image</span>
+                                                        <span class="fileinput-exists">Change</span>
+                                                        <input type="file" name="image" required/>
+                                                    </span>
+                                                    <a href="javascript:void(0)" class="btn btn-danger btn-round fileinput-exists" data-dismiss="fileinput"><i class="fa fa-times"></i> Remove</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

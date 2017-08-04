@@ -13,7 +13,13 @@
                         <br>
                         <div class="card-content">
                             @if(session('status'))
-                                <h5 class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} text-center flash-message">{{session('status')}}</h5>
+                                <div class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} alert-with-icon text-center flash-message" data-notify="container">
+                                    <i class="material-icons" data-notify="icon">notifications</i>
+                                    <button type="button" aria-hidden="true" class="close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span data-notify="message">{{session('status')}}.</span>
+                                </div>
                             @endif
                             <div class="row">
                                 <a href="{{route('createsliders')}}" class="btn btn-primary pull-right">Add Sliders</a>
@@ -36,7 +42,7 @@
                                         @foreach($sliders as $s)
                                             <tr>
                                                 <td>{{$s->name}}</td>
-                                                <td><img src="{{ asset('uploads/images/sliders/'.$s->image) }}" alt=""></td>
+                                                <td><img class="thumbnail" src="{{ asset('uploads/images/sliders/'.$s->image) }}" alt=""></td>
                                                 <td>{{$s->caption1}}</td>
                                                 <td>{{$s->caption2}}</td>
                                                 <td>{{($s->status == 1) ? "active" : "inactive"}}</td>
@@ -44,9 +50,11 @@
                                                     <a type="button" rel="tooltip" class="btn btn-success btn-round" href="{{ url('admin/sliders/edit/'.$s->id) }}" title="edit slider">
                                                         <i class="material-icons">edit</i>
                                                     </a>
-                                                    <a type="button" rel="tooltip" class="btn btn-danger btn-round delete-sliders" href="{{ url('admin/sliders/delete/'.$s->id) }}" title="delete slider">
-                                                        <i class="material-icons">close</i>
-                                                    </a>
+                                                    <form id="delete_form" action="{{ url('admin/sliders/delete/'.$s->id) }}" method="POST" style="display:inline-block">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-round delete-slider" title="delete slider"><i class="material-icons">delete</i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -75,10 +83,21 @@
 
             $('.flash-message').slideUp('slow');
 
-            $('.delete-sliders').click(function () {
-                var sure = confirm('Do you really want to delete this slider!');
-                if(!sure)
-                    return false;
+            $('.delete-slider').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    confirmButtonText: 'Yes, delete it!',
+                    buttonsStyling: false
+                }).then(function(){
+
+                    $('#delete_form').submit();
+                });
             });
         })
     </script>

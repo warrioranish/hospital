@@ -13,7 +13,13 @@
                         <br>
                         <div class="card-content">
                             @if(session('status'))
-                                <h5 class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} text-center flash-message">{{ session('status') }}</h5>
+                                <div class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} alert-with-icon text-center flash-message" data-notify="container">
+                                    <i class="material-icons" data-notify="icon">notifications</i>
+                                    <button type="button" aria-hidden="true" class="close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span data-notify="message">{{session('status')}}.</span>
+                                </div>
                             @endif
                             <div class="row">
                                 <a href="{{route('createtestimonials')}}" class="btn btn-primary pull-right">Add Testimonials</a>
@@ -42,9 +48,11 @@
                                                     <a type="button" rel="tooltip" class="btn btn-success btn-round" href="{{ url('admin/testimonials/edit/' . $t->id) }}" title="edit testimonial">
                                                         <i class="material-icons">edit</i>
                                                     </a>
-                                                    <a type="button" rel="tooltip" class="btn btn-danger btn-round delete-testimonial" href="{{route('deletetestimonials', ['id'=> $t->id])}}" title="delete testimonial">
-                                                        <i class="material-icons">close</i>
-                                                    </a>
+                                                    <form id="delete_form" action="{{route('deletetestimonials', ['id'=> $t->id])}}" method="POST" style="display:inline-block">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-round delete-testimonial" title="delete testimonial"><i class="material-icons">delete</i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -73,10 +81,20 @@
 
             $('.flash-message').slideUp('slow');
 
-            $('.delete-testimonial').click(function() {
-                var sure = confirm('Do you really want to remove this testimonial!');
-                if(!sure)
-                    return false;
+            $('.delete-testimonial').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    confirmButtonText: 'Yes, delete it!',
+                    buttonsStyling: false
+                }).then(function(){
+                    $('#delete_form').submit();
+                });
             });
         })
     </script>

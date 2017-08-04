@@ -13,7 +13,13 @@
                         <br>
                         <div class="card-content">
                             @if(session('status'))
-                                <h5 class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} text-center flash-message">{{session('status')}}</h5>
+                                <div class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} alert-with-icon text-center flash-message" data-notify="container">
+                                    <i class="material-icons" data-notify="icon">notifications</i>
+                                    <button type="button" aria-hidden="true" class="close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span data-notify="message">{{session('status')}}.</span>
+                                </div>
                             @endif
                             <div class="row">
                                 <a href="{{route('createpartners')}}" class="btn btn-primary pull-right">Add Partners</a>
@@ -35,16 +41,18 @@
                                         @foreach($partners as $p)
                                             <tr>
                                                 <td>{{$p->name}}</td>
-                                                <td><img src="{{ asset('uploads/images/partners/'.$p->image) }}" style="width:150px;" alt=""></td>
+                                                <td><img class="thumbnail" src="{{ asset('uploads/images/partners/'.$p->image) }}" style="width:150px;" alt=""></td>
                                                 <td>{{($p->url == 'javascript:void(0)' ? 'No url added' : $p->url)}}</td>
                                                 <td>{{($p->status == 1) ? "active" : "inactive"}}</td>
                                                 <td class="td-actions">
                                                     <a type="button" rel="tooltip" class="btn btn-success btn-round" href="{{ url('admin/partners/edit/'.$p->id) }}" title="edit partner">
                                                         <i class="material-icons">edit</i>
                                                     </a>
-                                                    <a type="button" rel="tooltip" class="btn btn-danger btn-round delete-partner" href="{{ url('admin/partners/delete/'.$p->id) }}" title="delete partner">
-                                                        <i class="material-icons">close</i>
-                                                    </a>
+                                                    <form id="delete_form" action="{{ url('admin/partners/delete/'.$p->id) }}" method="POST" style="display:inline-block">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-round delete-partner" title="delete partner"><i class="material-icons">delete</i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -73,10 +81,21 @@
 
             $('.flash-message').slideUp('slow');
 
-            $('.delete-partner').click(function () {
-                var sure = confirm('Do you really want to delete this partner!');
-                if(!sure)
-                    return false;
+            $('.delete-partner').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    confirmButtonText: 'Yes, delete it!',
+                    buttonsStyling: false
+                }).then(function(){
+
+                    $('#delete_form').submit();
+                });
             });
         })
     </script>

@@ -13,7 +13,13 @@
                         <br>
                         <div class="card-content">
                             @if(session('status'))
-                                <h5 class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} text-center flash-message">{{session('status')}}</h5>
+                                <div class="alert {{ (isset($_GET['delete'])) ? 'alert-danger' : 'alert-success' }} alert-with-icon text-center flash-message" data-notify="container">
+                                    <i class="material-icons" data-notify="icon">notifications</i>
+                                    <button type="button" aria-hidden="true" class="close">
+                                        <i class="material-icons">close</i>
+                                    </button>
+                                    <span data-notify="message">{{session('status')}}.</span>
+                                </div>
                             @endif
                             <div class="row">
                                 <a href="{{route('createimages', ['id' => $gallery->id])}}" class="btn btn-primary pull-right">Add Images</a>
@@ -35,16 +41,18 @@
                                         @foreach($images as $i)
                                             <tr>
                                                 <td>{{$i->title}}</td>
-                                                <td><img src="{{ asset('uploads/images/gallery/'.$i->image) }}" alt=""></td>
+                                                <td><img class="thumbnail" src="{{ asset('uploads/images/gallery/'.$i->image) }}" alt=""></td>
                                                 <td>{!! str_limit($i->description, 100) !!}</td>
                                                 <td>{{($i->status == 1) ? "active" : "inactive"}}</td>
                                                 <td class="td-actions">
                                                     <a type="button" rel="tooltip" class="btn btn-success btn-round" href="{{ url('admin/gallery/images/edit/'.$i->id) }}" title="edit image">
                                                         <i class="material-icons">edit</i>
                                                     </a>
-                                                    <a type="button" rel="tooltip" class="btn btn-danger btn-round delete-sliders" href="{{ url('admin/gallery/images/delete/'.$i->id) }}" title="delete image">
-                                                        <i class="material-icons">close</i>
-                                                    </a>
+                                                    <form action="{{ url('admin/gallery/images/delete/'.$i->id) }}" method="POST" style="display:inline-block">
+                                                        {{ csrf_field() }}
+                                                        {{ method_field('DELETE') }}
+                                                        <button type="submit" rel="tooltip" class="btn btn-danger btn-round delete-image" title="delete image"><i class="material-icons">delete</i></button>
+                                                    </form>
                                                 </td>
                                             </tr>
                                         @endforeach
@@ -71,12 +79,22 @@
     <script>
         $(function () {
 
-            $('.flash-message').slideUp('slow');
+            $('.flash-message').slideUp(1000, 'swing');
 
-            $('.delete-sliders').click(function () {
-                var sure = confirm('Do you really want to delete this image!');
-                if(!sure)
-                    return false;
+            $('.delete-image').click(function(e) {
+                e.preventDefault();
+                swal({
+                    title: 'Are you sure?',
+                    text: "You won't be able to revert this!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonClass: 'btn btn-success',
+                    cancelButtonClass: 'btn btn-danger',
+                    confirmButtonText: 'Yes, delete it!',
+                    buttonsStyling: false
+                }).then(function(){
+                    $('#delete_form').submit();
+                });
             });
         })
     </script>
