@@ -21,7 +21,7 @@
                                     <span data-notify="message">{{session('status')}}.</span>
                                 </div>
                             @endif
-                            <div class="row">
+                            <div class="container-fluid">
                                 <a href="{{route('createsliders')}}" class="btn btn-primary pull-right">Add Sliders</a>
                             </div>
                             <div class="table-responsive">

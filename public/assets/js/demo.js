@@ -787,7 +787,7 @@ demo = {
                 title: "Here's a message!",
                 text: "It's pretty, isn't it?",
                 buttonsStyling: false,
-                confirmButtonClass: "btn btn-info"
+                confirmnullButtonClass: "btn btn-info"
             });
 
     	}else if(type == 'success-message'){

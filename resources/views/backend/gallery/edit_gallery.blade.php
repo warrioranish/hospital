@@ -9,7 +9,7 @@
                         <div class="card-header card-header-icon" data-background-color="green">
                             <i class="material-icons">insert_photo</i>
                         </div>
-                        <h4 class="card-title"><a href="{{ route('gallery') }}">Gallery</a> / edit</h4>
+                        <h4 class="card-title"><b><a href="{{ route('gallery') }}">Gallery</a></b> / edit</h4>
                         <br>
                         <div class="card-content">
                             <div class="container-fluid">

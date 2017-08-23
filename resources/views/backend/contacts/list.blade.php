@@ -125,10 +125,12 @@
                                     </table>
                                 </div>
                             </div>
-                            @if(isset($contacts))
-                                {{ $contacts->links() }}
-                            @endif
                         </div>
+                        @if(isset($contacts))
+                            <div class="col-sm-12 text-center">
+                                {{ $contacts->links() }}
+                            </div>
+                        @endif
                     </div>
                 </div>
             </div>

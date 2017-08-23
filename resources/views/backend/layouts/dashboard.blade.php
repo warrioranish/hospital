@@ -79,18 +79,36 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href="{{route('contacts')}}">
+                    <a href="{{ route('gallery') }}">
                         <div class="card card-stats">
-                            <div class="card-header" data-background-color="rose">
-                                <i class="material-icons">contacts</i>
+                            <div class="card-header" data-background-color="blue">
+                                <i class="material-icons">business_center</i>
                             </div>
                             <div class="card-content">
-                                <p class="category">Contact Us</p>
-                                <h3 class="card-title">{{$contacts_count}}</h3>
+                                <p class="category">Departments</p>
+                                <h3 class="card-title">{{ $gallery_count }}</h3>
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    View Contacts
+                                    Manage Departments
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a href="{{route('testimonials')}}">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="rose">
+                                <i class="material-icons">settings</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Services</p>
+                                <h3 class="card-title">{{$testimonial_count}}</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    Manage testimonials
                                 </div>
                             </div>
                         </div>
@@ -154,7 +172,7 @@
                     <a href="{{route('settings')}}">
                         <div class="card card-stats">
                             <div class="card-header" data-background-color="green">
-                                <i class="material-icons">settings</i>
+                                <i class="material-icons">build</i>
                             </div>
                             <div class="card-content">
                                 <p class="category">Settings</p>
@@ -163,6 +181,24 @@
                             <div class="card-footer">
                                 <div class="stats">
                                     Manage Settings
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                    <a href="{{route('contacts')}}">
+                        <div class="card card-stats">
+                            <div class="card-header" data-background-color="rose">
+                                <i class="material-icons">contacts</i>
+                            </div>
+                            <div class="card-content">
+                                <p class="category">Contact Us</p>
+                                <h3 class="card-title">{{$contacts_count}}</h3>
+                            </div>
+                            <div class="card-footer">
+                                <div class="stats">
+                                    View Contacts
                                 </div>
                             </div>
                         </div>

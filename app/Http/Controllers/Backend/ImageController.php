@@ -36,6 +36,49 @@ class ImageController extends Controller
     }
 
     /**
+     * Apply changes to multiple items
+     */
+    public function action(Request $request, Gallery $id) {
+
+        $action = $request->action;
+        $checked = $request->check;
+        switch ($action) {
+
+            case "publish":
+                foreach($checked as $k=>$v) {
+
+                    $image = Image::find($v);
+                    $image->status = 1;
+                    $image->save();
+                }
+                return redirect()->route('images', ['id' => $id->id])->with('status', 'Images are successfully set to active');
+                break;
+
+            case "unpublish":
+                foreach($checked as $k=>$v) {
+
+                    $image = Image::find($v);
+                    $image->status = 0;
+                    $image->save();
+                }
+                return redirect()->route('images', ['id' => $id->id])->with('status', 'Images are successfully set to inactive');
+                break;
+
+            default:
+                foreach($checked as $k=>$v) {
+
+                    $image = Image::find($v);
+                    $image->delete();
+                    if(file_exists(public_path().'/uploads/images/gallery/'.$image->image)){
+                        @unlink(public_path().'/uploads/images/gallery/'.$image->image);
+                    }
+                }
+                $delete = true;
+                return redirect()->route('images', ['id'=> $id->id, 'delete' => $delete])->with('status', 'Images are deleted successfully');
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

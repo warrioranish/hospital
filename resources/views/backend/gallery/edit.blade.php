@@ -9,7 +9,7 @@
                         <div class="card-header card-header-icon" data-background-color="green">
                             <i class="material-icons">insert_photo</i>
                         </div>
-                        <h4 class="card-title"><a href="{{ route('gallery') }}">Gallery</a> / <a href="{{ route('images', ['id' => $galleryId]) }}"> {{ $galleryName }}</a> / edit</h4>
+                        <h4 class="card-title"><b><a href="{{ route('gallery') }}">Gallery</a></b> / <b><a href="{{ route('images', ['id' => $galleryId]) }}"> {{ $galleryName }}</a></b> / edit</h4>
                         <br>
                         <div class="card-content">
                             <div class="container-fluid">
@@ -29,7 +29,7 @@
                                         <label class="col-md-1 label-on-left">Image</label>
                                         <div class="col-md-11">
                                             <div class="fileinput fileinput-new text-center" data-provides="fileinput">
-                                                <div class="fileinput-new thumbnail">
+                                                <div class="fileinput-new">
                                                     <img src="{{ asset('uploads/images/gallery/'.$image->image) }}" style="width:500px;" alt="">
                                                 </div>
                                                 <div class="fileinput-preview fileinput-exists thumbnail"></div>

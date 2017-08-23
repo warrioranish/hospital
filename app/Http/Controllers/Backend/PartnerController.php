@@ -32,6 +32,45 @@ class PartnerController extends Controller
     }
 
     /**
+     * Apply changes to multiple items
+     */
+    public function action(Request $request) {
+        $action = $request->action;
+        $checked = $request->check;
+
+        switch($action) {
+            case "publish":
+                foreach($checked as $k=>$v){
+                    $partner = Partner::find($v);
+                    $partner->status = 1;
+                    $partner->save();
+                }
+                return redirect()->route('partners')->with('status', 'Partners are successfully set to active');
+                break;
+
+            case "unpublish":
+                foreach($checked as $k=>$v) {
+                    $partner = Partner::find($v);
+                    $partner->status = 0;
+                    $partner->save();
+                }
+                return redirect()->route('partners')->with('status', 'Partners are successfully set to inactive');
+                break;
+
+            default:
+                foreach($checked as $k=>$v) {
+                    $partner = Partner::find($v);
+                    $partner->delete();
+                    if(file_exists(public_path().'/uploads/images/partners/'.$partner->image)) {
+                        @unlink(public_path().'/uploads/images/partners/'.$partner->image);
+                    }
+                }
+                $delete = true;
+                return redirect()->route('partners', ['delete' => $delete])->with('status', 'Partners are deleted successfully');
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

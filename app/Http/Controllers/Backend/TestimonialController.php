@@ -35,6 +35,42 @@ class TestimonialController extends Controller
     }
 
     /**
+     * Apply changes to multiple items
+     */
+    public function action(Request $request){
+        $action = $request->action;
+        $checked = $request->check;
+
+        switch($action) {
+            case "publish":
+                foreach($checked as $k=>$v){
+                    $testimonial = Testimonial::find($v);
+                    $testimonial->status = 1;
+                    $testimonial->save();
+                }
+                return redirect()->route('testimonials')->with('status', 'Testimonials are successfully set to active');
+                break;
+
+            case "unpublish":
+                foreach($checked as $k=>$v) {
+                    $testimonial = Testimonial::find($v);
+                    $testimonial->status = 0;
+                    $testimonial->save();
+                }
+                return redirect()->route('testimonials')->with('status', 'Testimonials are successfully set to inactive');
+                break;
+
+            default:
+                foreach($checked as $k=>$v) {
+                    $testimonial = Testimonial::find($v);
+                    $testimonial->delete();
+                }
+                $delete = true;
+                return redirect()->route('testimonials', ['delete' => $delete])->with('status', 'Testimonials are deleted successfully');
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response

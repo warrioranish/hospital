@@ -35,6 +35,44 @@ class FaqController extends Controller
     }
 
     /**
+     * Apply changes to multiple items
+     */
+    public function action(Request $request)
+    {
+        $action = $request->action;
+        $checked = $request->check;
+
+        switch($action) {
+            case "publish":
+                foreach($checked as $k=>$v){
+                    $faq = Faq::find($v);
+                    $faq->status = 1;
+                    $faq->save();
+                }
+                return redirect()->route('faq')->with('status', 'Faqs are successfully set to active');
+                break;
+
+            case "unpublish":
+                foreach($checked as $k=>$v) {
+                    $faq = Faq::find($v);
+                    $faq->status = 0;
+                    $faq->save();
+                }
+                return redirect()->route('faq')->with('status', 'Faqs are successfully set to inactive');
+                break;
+
+            default:
+                foreach($checked as $k=>$v) {
+                    $faq = Faq::find($v);
+                    $faq->delete();
+                }
+                $delete = true;
+                return redirect()->route('faq', ['delete' => $delete])->with('status', 'Faqs are deleted successfully');
+        }
+
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -88,6 +126,7 @@ class FaqController extends Controller
      */
     public function update(Request $request,Faq $id)
     {
+
         $this->validate($request, [
            'question' => 'required',
             'answer' => 'required'

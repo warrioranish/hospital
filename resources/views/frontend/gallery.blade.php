@@ -26,25 +26,27 @@
                     <div class="col-md-10 col-md-push-1">
                         <div id="gallery-owl-carousel" class="owl-carousel" data-dots="true" data-items="1" data-responsive-lg="1" data-responsive-md="1" data-responsive-sm="1" data-responsive-xs="1">
                             @foreach($gallery as $g)
-                                <div class="vertical-item content-padding gallery-extended-item with_background bottom-rounded text-center">
-                                    <div class="item-media">
-                                        <?php $random_image = RandomImage($g->id);?>
-                                        <img src="{{asset('uploads/images/gallery/'.$random_image['image'])}}" alt="">
-                                        <div class="media-links">
-                                            <a class="abs-link" title="view image" href="{{ url('/gallery/single/'.$random_image['slug']) }}"></a>
+                                @if(ImagesNum($g->id) > 0)
+                                    <div class="vertical-item content-padding gallery-extended-item with_background bottom-rounded text-center">
+                                        <div class="item-media">
+                                            <?php $random_image = RandomImage($g->id);?>
+                                            <img src="{{asset('uploads/images/gallery/'.$random_image['image'])}}" alt="">
+                                            <div class="media-links">
+                                                <a class="abs-link" title="view image" href="{{ url('/gallery/single/'.$random_image['slug']) }}"></a>
+                                            </div>
+                                        </div>
+                                        <div class="item-content">
+                                                    <span class="categories-links small-text highlight3">
+                                                        <a rel="category" href="{{ url('/gallery/'.$g->slug) }}">{{ $g->name }}</a>
+                                                    </span>
+                                            <h3 class="item-title topmargin_0">
+                                                <a href="{{ url('/gallery/single/'.$random_image['slug']) }}">{{$random_image['title'] }}</a>
+                                            </h3>
+
+                                            <p>{!! $random_image['description'] !!}</p>
                                         </div>
                                     </div>
-                                    <div class="item-content">
-                                                <span class="categories-links small-text highlight3">
-                                                    <a rel="category" href="{{ url('/gallery/'.$g->slug) }}">{{ $g->name }}</a>
-                                                </span>
-                                        <h3 class="item-title topmargin_0">
-                                            <a href="{{ url('/gallery/single/'.$random_image['slug']) }}">{{$random_image['title'] }}</a>
-                                        </h3>
-
-                                        <p>{!! $random_image['description'] !!}</p>
-                                    </div>
-                                </div>
+                                @endif
                             @endforeach
 
                         </div>

@@ -63,6 +63,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
     //testimonial routes
     Route::get('testimonial', 'Backend\TestimonialController@index')->name('testimonials');
 
+    Route::post('testimonial/action', 'Backend\TestimonialController@action')->name('actiontestimonials');
+
     Route::get('testimonials/add', 'Backend\TestimonialController@add')->name('createtestimonials');
 
     Route::post('testimonials/add', 'Backend\TestimonialController@store')->name('storetestimonials');
@@ -89,6 +91,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
     //Partner routes
     Route::get('partners', 'Backend\PartnerController@index')->name('partners');
 
+    Route::post('partners/action', 'Backend\PartnerController@action')->name('actionpartners');
+
     Route::get('partners/create', 'Backend\PartnerController@create')->name('createpartners');
 
     Route::post('partners/store', 'Backend\PartnerController@store')->name('storepartners');
@@ -102,6 +106,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
     //faq
     Route::get('faq', 'Backend\FaqController@index')->name('faq');
 
+    Route::post('faq/action', 'Backend\FaqController@action')->name('actionfaqs');
+
     Route::get('faq/create', 'Backend\FaqController@create')->name('createfaqs');
 
     Route::post('faq/store', 'Backend\FaqController@store')->name('storefaqs');
@@ -112,8 +118,11 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::delete('faq/delete/{id}', 'Backend\FaqController@destroy')->name('deletefaqs');
 
+
     //Gallery
     Route::get('gallery', 'Backend\GalleryController@index')->name('gallery');
+
+    Route::post('gallery/action', 'Backend\GalleryController@action')->name('actiongallery');
 
     Route::get('gallery/create', 'Backend\GalleryController@create')->name('creategallery');
 
@@ -128,6 +137,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
     //images
     Route::get('gallery/images/{id}', 'Backend\ImageController@index')->name('images');
 
+    Route::post('gallery/action/{id}', 'Backend\ImageController@action')->name('actionimages');
+
     Route::get('gallery/images/add/{id}', 'Backend\ImageController@create')->name('createimages');
 
     Route::post('gallery/images/add/{id}', 'Backend\ImageController@store')->name('storeimages');
@@ -137,6 +148,9 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
     Route::patch('gallery/images/update/{id}', 'Backend\ImageController@update')->name('updateimages');
 
     Route::delete('gallery/images/delete/{id}', 'Backend\ImageController@destroy')->name('deleteimages');
+
+    //departments
+    Route::get('departments', 'Backend\Department@index')->name('departments');
 
 });
 

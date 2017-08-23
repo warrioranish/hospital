@@ -399,9 +399,11 @@
                                     <a href="{{ url('/gallery') }}">Gallery</a>
                                     <ul>
                                         @foreach(Galleries() as $g)
-                                            <li>
-                                                <a href="{{ url('/gallery/'.$g->slug) }}">{{ $g->name }}</a>
-                                            </li>
+                                            @if(ImagesNum($g->id))
+                                                <li>
+                                                    <a href="{{ url('/gallery/'.$g->slug) }}">{{ $g->name }}</a>
+                                                </li>
+                                            @endif
                                         @endforeach
                                     </ul>
                                 </li>
