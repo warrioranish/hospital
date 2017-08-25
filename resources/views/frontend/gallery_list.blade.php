@@ -15,7 +15,7 @@
                         <li>
                             <a href="{{ url('/gallery') }}">Gallery</a>
                         </li>
-                        <li class="active">{{ $gallery_name }} lists</li>
+                        <li class="active">{{ $gallery_name }}</li>
                     </ol>
                 </div>
             </div>

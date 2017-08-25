@@ -67,8 +67,8 @@
                                             @endforeach
                                         @else
                                             <tr>
-                                                <td colspan="5" class="text-center">
-                                                    <h4>There are no sliders added yet, click <a href="{{route('createpartners')}}">here</a> to add one</h4>
+                                                <td colspan="6" class="text-center">
+                                                    <h4>There are no partners added yet, click <a href="{{route('createpartners')}}">here</a> to add one</h4>
                                                 </td>
                                             </tr>
                                         @endif
@@ -76,17 +76,19 @@
                                     </table>
                                 </div>
                             </div>
-                            <div>
-                                <div class="col-lg-4 col-md-6 col-sm-3">
-                                    <select class="selectpicker" data-style="btn btn-primary btn-round"
-                                            title="Select Action" name="action" data-size="7">
-                                        <option value="publish">Publish Selected Items</option>
-                                        <option value="unpublish">Unpublish Selected Items</option>
-                                        <option value="delete">Delete Selected Items</option>
-                                    </select>
+                            @if(count($partners) > 0 )
+                                <div>
+                                    <div class="col-lg-4 col-md-6 col-sm-3">
+                                        <select class="selectpicker" data-style="btn btn-primary btn-round"
+                                                title="Select Action" name="action" data-size="7">
+                                            <option value="publish">Publish Selected Items</option>
+                                            <option value="unpublish">Unpublish Selected Items</option>
+                                            <option value="delete">Delete Selected Items</option>
+                                        </select>
+                                    </div>
+                                    <button type="button" id="update" class="btn btn-fill btn-rose">Update</button>
                                 </div>
-                                <button type="button" id="update" class="btn btn-fill btn-rose">Update</button>
-                            </div>
+                            @else
                         </div>
                     </form>
                     @if(isset($partners))

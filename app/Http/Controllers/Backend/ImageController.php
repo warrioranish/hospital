@@ -42,6 +42,7 @@ class ImageController extends Controller
 
         $action = $request->action;
         $checked = $request->check;
+
         switch ($action) {
 
             case "publish":
@@ -68,10 +69,11 @@ class ImageController extends Controller
                 foreach($checked as $k=>$v) {
 
                     $image = Image::find($v);
-                    $image->delete();
+
                     if(file_exists(public_path().'/uploads/images/gallery/'.$image->image)){
                         @unlink(public_path().'/uploads/images/gallery/'.$image->image);
                     }
+                    $image->delete();
                 }
                 $delete = true;
                 return redirect()->route('images', ['id'=> $id->id, 'delete' => $delete])->with('status', 'Images are deleted successfully');
@@ -104,7 +106,6 @@ class ImageController extends Controller
 
         $image = new Image;
         $image->gallery_id = $id->id;
-
         $image->title =  $request->title;
         if($request->hasFile('image')) {
             if($request->file('image')->isValid()){
@@ -185,11 +186,11 @@ class ImageController extends Controller
     {
         $gallery = $this->imageRepository->GalleryNameAndId($id->id);
 
-        $id->delete();
-
         if(file_exists(public_path().'/uploads/images/gallery/'.$id->image)){
             @unlink(public_path().'/uploads/images/gallery/'.$id->image);
         }
+
+        $id->delete();
 
         $delete = true;
 

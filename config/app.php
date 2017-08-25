@@ -170,6 +170,10 @@ return [
          * Slug generator Service Provider
          */
         Cviebrock\EloquentSluggable\ServiceProvider::class,
+        /**
+         * Intervention Service Provider
+         */
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Package Service Providers...
          */

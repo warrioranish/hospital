@@ -101,6 +101,42 @@ Tip 3: you can change the color of the sidebar with data-background-color="white
                 </div>
             </li>
             <li>
+                <a data-toggle="collapse" href="#departmentHospital">
+                    <i class="material-icons">business_center</i>
+                    <p>Department
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="departmentHospital">
+                    <ul class="nav">
+                        <li>
+                            <a href="{{ route('gallery') }}">List All</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('creategallery') }}">Add Department</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
+                <a data-toggle="collapse" href="#servicesHospital">
+                    <i class="material-icons">settings</i>
+                    <p>Services
+                        <b class="caret"></b>
+                    </p>
+                </a>
+                <div class="collapse" id="servicesHospital">
+                    <ul class="nav">
+                        <li>
+                            <a href="{{ route('services') }}">List All</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('createservices') }}">Add Services</a>
+                        </li>
+                    </ul>
+                </div>
+            </li>
+            <li>
                 <a data-toggle="collapse" href="#contactsHospital">
                     <i class="material-icons">contacts</i>
                     <p>Contact us

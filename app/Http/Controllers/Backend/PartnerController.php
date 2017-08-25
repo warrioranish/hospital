@@ -28,6 +28,7 @@ class PartnerController extends Controller
     public function index()
     {
         $partners = $this->partnersRepository->getPartners();
+
         return view('backend.partners.list', compact('partners'));
     }
 
@@ -60,10 +61,10 @@ class PartnerController extends Controller
             default:
                 foreach($checked as $k=>$v) {
                     $partner = Partner::find($v);
-                    $partner->delete();
                     if(file_exists(public_path().'/uploads/images/partners/'.$partner->image)) {
                         @unlink(public_path().'/uploads/images/partners/'.$partner->image);
                     }
+                    $partner->delete();
                 }
                 $delete = true;
                 return redirect()->route('partners', ['delete' => $delete])->with('status', 'Partners are deleted successfully');
@@ -168,12 +169,10 @@ class PartnerController extends Controller
     public function destroy(Partner $id)
     {
 
-        $id->delete();
-
         if(file_exists(public_path().'/uploads/images/partners/'.$id->image)) {
             @unlink(public_path().'/uploads/images/partners/'.$id->image);
         }
-
+        $id->delete();
         $delete = true;
 
         return redirect()->route('partners', ['delete' => $delete])->with('status', 'Partner deleted successfully');

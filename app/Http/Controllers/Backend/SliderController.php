@@ -34,6 +34,50 @@ class SliderController extends Controller
     }
 
     /**
+     * Apply changes to multiple items
+     */
+    public function action(Request $request) {
+        $action = $request->action;
+        $checked = $request->check;
+
+        switch ($action) {
+
+            case "publish":
+                foreach($checked as $k=>$v) {
+
+                    $slider = Slider::find($v);
+                    $slider->status = 1;
+                    $slider->save();
+                }
+                return redirect()->route('sliders')->with('status', 'Sliders are successfully set to active');
+                break;
+
+            case "unpublish":
+                foreach($checked as $k=>$v) {
+
+                    $slider = Slider::find($v);
+                    $slider->status = 0;
+                    $slider->save();
+                }
+                return redirect()->route('sliders')->with('status', 'Images are successfully set to inactive');
+                break;
+
+            default:
+                foreach($checked as $k=>$v) {
+
+                    $slider = Slider::find($v);
+
+                    if(file_exists(public_path().'/uploads/images/sliders/'.$slider->image)){
+                        @unlink(public_path().'/uploads/images/sliders/'.$slider->image);
+                    }
+                    $slider->delete();
+                }
+                $delete = true;
+                return redirect()->route('sliders', ['delete' => $delete])->with('status', 'Images are deleted successfully');
+        }
+    }
+
+    /**
      * Show the form for creating a new resource.
      *
      * @return \Illuminate\Http\Response
@@ -67,7 +111,7 @@ class SliderController extends Controller
         if($request->hasFile('image')) {
             if($request->file('image')->isvalid()){
                 $file = $request->file('image');
-                $filename = date('YmdHis').'_'.rand(1,9999999999).$file->getClientOriginalName();
+                $filename = str_random(25).'_'.$file->getClientOriginalName();
                 $destination_path = public_path(). '/uploads/images/sliders';
                 $file->move($destination_path, $filename);
             }

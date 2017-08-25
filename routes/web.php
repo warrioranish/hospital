@@ -78,6 +78,8 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
     //Slider routes
     Route::get('sliders', 'Backend\SliderController@index')->name('sliders');
 
+    Route::post('sliders/action', 'Backend\SliderController@action')->name('actionsliders');
+
     Route::get('sliders/create', 'Backend\SliderController@create')->name('createsliders');
 
     Route::post('sliders/create', 'Backend\SliderController@store')->name('storesliders');
@@ -149,8 +151,17 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::delete('gallery/images/delete/{id}', 'Backend\ImageController@destroy')->name('deleteimages');
 
+    //services
+    Route::get('services', 'Backend\ServiceController@index')->name('services');
+
+    Route::get('services/create', 'Backend\ServiceController@create')->name('createservices');
+
+    Route::post('services/store', 'Backend\ServiceController@store')->name('storeservices');
+
     //departments
     Route::get('departments', 'Backend\Department@index')->name('departments');
+
+
 
 });
 

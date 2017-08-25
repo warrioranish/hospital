@@ -97,7 +97,7 @@
                     </a>
                 </div>
                 <div class="col-lg-3 col-md-6 col-sm-6">
-                    <a href="{{route('testimonials')}}">
+                    <a href="{{route('services')}}">
                         <div class="card card-stats">
                             <div class="card-header" data-background-color="rose">
                                 <i class="material-icons">settings</i>
@@ -108,7 +108,7 @@
                             </div>
                             <div class="card-footer">
                                 <div class="stats">
-                                    Manage testimonials
+                                    Manage services
                                 </div>
                             </div>
                         </div>

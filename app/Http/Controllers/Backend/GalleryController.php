@@ -70,13 +70,14 @@ class GalleryController extends Controller
                     $gallery = Gallery::find($v);
 
                     $images = $gallery->images;
-                    
+
                     if($images) {
                         foreach($images as $i) {
-                            $i->delete();
+
                             if(file_exists(public_path().'/uploads/images/gallery/'.$i->image)){
                                 @unlink(public_path().'/uploads/images/gallery/'.$i->image);
                             }
+                            $i->delete();
                         }
                     }
 
@@ -106,7 +107,7 @@ class GalleryController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required'
+            'name' => 'required',
         ]);
 
         Gallery::create($request->all());
@@ -158,11 +159,10 @@ class GalleryController extends Controller
         if($gallery_images) {
             foreach($gallery_images as $img) {
 
-                $img->delete();
-
                 if(file_exists(public_path().'/uploads/images/gallery/'.$img->image)){
                     @unlink(public_path().'/uploads/images/gallery/'.$img->image);
                 }
+                $img->delete();
             }
         }
 

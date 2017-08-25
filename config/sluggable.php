@@ -6,16 +6,16 @@ return [
      * What attributes do we use to build the slug?
      * This can be a single field, like "name" which will build a slug from:
      *
-     *     $model->name;
+     *     $models->name;
      *
      * Or it can be an array of fields, like ("name", "company"), which builds a slug from:
      *
-     *     $model->name . ' ' . $model->company;
+     *     $models->name . ' ' . $models->company;
      *
-     * If you've defined custom getters in your model, you can use those too,
+     * If you've defined custom getters in your models, you can use those too,
      * since Eloquent will call them when you request a custom attribute.
      *
-     * Defaults to null, which uses the toString() method on your model.
+     * Defaults to null, which uses the toString() method on your models.
      */
 
     'source' => null,
@@ -77,15 +77,15 @@ return [
 
     /**
      * Should we include the trashed items when generating a unique slug?
-     * This only applies if the softDelete property is set for the Eloquent model.
-     * If set to "false", then a new slug could duplicate one that exists on a trashed model.
+     * This only applies if the softDelete property is set for the Eloquent models.
+     * If set to "false", then a new slug could duplicate one that exists on a trashed models.
      * If set to "true", then uniqueness is enforced across trashed and existing models.
      */
 
     'includeTrashed' => false,
 
     /**
-     * An array of slug names that can never be used for this model,
+     * An array of slug names that can never be used for this models,
      * e.g. to prevent collisions with existing routes or controller methods, etc..
      * Defaults to null (i.e. no reserved names).
      * Can be a static array, e.g.:
@@ -93,11 +93,11 @@ return [
      *    'reserved' => array('add', 'delete'),
      *
      * or a closure that returns an array of reserved names.
-     * If using a closure, it will accept one parameter: the model itself, and should
+     * If using a closure, it will accept one parameter: the models itself, and should
      * return an array of reserved names, or null. e.g.
      *
-     *    'reserved' => function( Model $model) {
-     *      return $model->some_method_that_returns_an_array();
+     *    'reserved' => function( Model $models) {
+     *      return $models->some_method_that_returns_an_array();
      *    }
      *
      * In the case of a slug that gets generated with one of these reserved names,
@@ -111,7 +111,7 @@ return [
     'reserved' => null,
 
     /**
-     * Whether to update the slug value when a model is being
+     * Whether to update the slug value when a models is being
      * re-saved (i.e. already exists).  Defaults to false, which
      * means slugs are not updated.
      *
