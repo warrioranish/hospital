@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Slider;
+use App\Models\Slider;
 
 class SliderRepository
 {

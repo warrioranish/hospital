@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Backend;
 use App\Repositories\TestimonialsRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Testimonial;
+use App\Models\Testimonial;
 
 class TestimonialController extends Controller
 {

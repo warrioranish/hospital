@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Frontend;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Contact;
+use App\Models\Contact;
 
 
 class ContactusController extends Controller
@@ -12,7 +12,7 @@ class ContactusController extends Controller
 //
     public function contacts(){
 
-        return view('frontend.contactus');
+        return view('frontend.feedback.contactus');
     }
 
     public function store(Request $request) {

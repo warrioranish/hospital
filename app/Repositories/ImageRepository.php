@@ -9,8 +9,8 @@
 namespace App\Repositories;
 
 
-use App\Gallery;
-use App\Image;
+use App\Models\Gallery;
+use App\Models\Image;
 
 class ImageRepository
 {

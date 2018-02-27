@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Faq;
+use App\Models\Faq;
 use App\Repositories\FaqRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

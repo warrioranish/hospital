@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Partner;
+use App\Models\Partner;
 use App\Repositories\PartnersRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -104,9 +104,11 @@ class PartnerController extends Controller
                 $filename = date('ymdHis') . '_' . rand(1, 9999999999) . $file->getClientOriginalName();
                 $destination_path = public_path() . '/uploads/images/partners';
                 $file->move($destination_path, $filename);
+
+                $partners->image = $filename;
             }
         }
-        $partners->image = $filename;
+
         $partners->url = $request->url;
         $partners->status = $request->status;
         $partners->save();
@@ -139,7 +141,7 @@ class PartnerController extends Controller
         ]);
 
         $id->name = $request->name;
-        
+
         if($request->hasFile('image')) {
             if($request->file('image')->isvalid()) {
                 $file = $request->file('image');

@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Frontend;
 
-use App\Gallery;
-use App\Image;
+use App\Models\Gallery;
+use App\Models\Image;
 use App\Repositories\GalleryRepository;
 use App\Repositories\ImageRepository;
 use Illuminate\Http\Request;
@@ -30,7 +30,7 @@ class GalleryController extends Controller
     public function index() {
         $gallery = $this->galleryRepository->get_gallery(true);
 
-        return view('frontend.gallery', compact('gallery') );
+        return view('frontend.gallery.gallery', compact('gallery') );
     }
 
     public function gallerylist($gallery_slugs) {
@@ -40,7 +40,7 @@ class GalleryController extends Controller
         $images = $gallery->images()->paginate(12);
 
         $gallery_name = $gallery['name'];
-        return view('frontend.gallery_list', compact('images', 'gallery_name'));
+        return view('frontend.gallery.gallery_list', compact('images', 'gallery_name'));
     }
 
     public function single(Image $slug) {
@@ -49,6 +49,6 @@ class GalleryController extends Controller
 
         $gallery_images = $gallery->images;
 
-        return view('frontend.gallery_single', ['image' => $slug, 'gallery_images' => $gallery_images, 'gallery' => $gallery]);
+        return view('frontend.gallery.gallery_single', ['image' => $slug, 'gallery_images' => $gallery_images, 'gallery' => $gallery]);
     }
 }

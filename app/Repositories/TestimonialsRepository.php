@@ -8,7 +8,7 @@
 
 namespace App\Repositories;
 
-use App\Testimonial;
+use App\Models\Testimonial;
 
 class TestimonialsRepository
 {

@@ -1,7 +1,7 @@
 <?php
 
-use App\Image,
-    App\Gallery;
+use App\Models\Image,
+    App\Models\Gallery;
 
 function ImagesNum($id) {
 

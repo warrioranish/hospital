@@ -9,17 +9,26 @@
                         <div class="card-header card-header-icon" data-background-color="green">
                             <i class="material-icons">insert_photo</i>
                         </div>
-                        <h4 class="card-title"><b><a href="{{ route('gallery') }}">Gallery</a></b> / <b><a href="{{ route('images', ['id' => $gallery->id]) }}"> {{ $gallery->name }}</a> </b>/ add</h4>
+                        <h4 class="card-title"><a href="{{ route('gallery') }}">Gallery</a> / <b><a href="{{ route('images', ['id' => $gallery->id]) }}"> {{ $gallery->name }}</a> </b>/ add</h4>
                         <br>
                         <div class="card-content">
                             <div class="container-fluid">
+                                <div class="alert alert-info alert-with-icon text-center flash-message" data-notify="container">
+                                    <i class="material-icons" data-notify="icon">warning</i>
+                                    <span data-notify="message">Please Note that fields marked with [*] are mandatory.</span>
+                                    @if(count($errors))
+                                        @foreach($errors->all() as $error)
+                                            <span data-notify="message">{{ $error }}</span>
+                                        @endforeach
+                                    @endif
+                                </div>
                                 <form id="add_form" class="form-horizontal" method="POST" action="{{ route('storeimages', ['id' => $gallery->id]) }}" enctype="multipart/form-data">
                                     {{ csrf_field() }}
                                     <div class="row">
                                         <label class="col-md-1 label-on-left">title <span class="asterisk">*</span></label>
                                         <div class="col-md-11">
                                             <div class="form-group label-floating is-empty">
-                                                <input type="text" name="title" class="form-control" autocomplete="off">
+                                                <input type="text" name="title" class="form-control" value="{{ old('title') }}" autocomplete="off">
                                             </div>
                                         </div>
                                     </div>
@@ -116,14 +125,13 @@
                 }
             },
             errorPlacement: function(error, element) {
-                if (element.attr("name") == "image" ) {
+                if (element.attr("name") == "image") {
                     error.insertAfter(".upload");
                 } else if(element.attr('name') == "description"){
                    error.insertAfter(element);
                 } else {
                     error.appendTo(element.parent("div"));
                 }
-
             }
         });
     </script>

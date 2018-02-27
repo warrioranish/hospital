@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Gallery;
+use App\Models\Gallery;
 use App\Repositories\GalleryRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;

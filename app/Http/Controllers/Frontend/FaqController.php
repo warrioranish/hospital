@@ -23,6 +23,6 @@ class FaqController extends Controller
 
         $faq = $this->faqRepository->getFaq(true);
 
-        return view('frontend.faq', compact('faq'));
+        return view('frontend.faq.faq', compact('faq'));
     }
 }

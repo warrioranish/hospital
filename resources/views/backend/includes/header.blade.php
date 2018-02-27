@@ -43,6 +43,7 @@
     {{--jquery validation--}}
     <script src="{{asset('assets/js/jquery.validate.min.js')}}"></script>
     {{--ckeditor cdn--}}
-    <script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>
+    {{--<script src="https://cdn.ckeditor.com/4.7.1/standard/ckeditor.js"></script>--}}
+    <script src="{{asset('vendor/unisharp/laravel-ckeditor/ckeditor.js')}}"></script>
 
 </head>

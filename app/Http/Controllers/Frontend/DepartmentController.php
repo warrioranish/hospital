@@ -10,16 +10,16 @@ class DepartmentController extends Controller
 
     public function index() {
 
-        return view('frontend.department');
+        return view('frontend.department.department');
     }
 
     public function member() {
 
-        return view('frontend.members');
+        return view('frontend.department.members');
     }
 
     public function profile() {
 
-        return view('frontend.profile');
+        return view('frontend.department.profile');
     }
 }

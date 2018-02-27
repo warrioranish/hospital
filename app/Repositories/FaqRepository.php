@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Faq;
+use App\Models\Faq;
 
 class FaqRepository
 {

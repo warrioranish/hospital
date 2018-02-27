@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Gallery;
+use App\Models\Gallery;
 
 class GalleryRepository
 {

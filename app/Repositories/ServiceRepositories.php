@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Service;
+use App\Models\Service;
 
 class ServiceRepositories
 {

@@ -9,7 +9,7 @@
 namespace App\Repositories;
 
 
-use App\Partner;
+use App\Models\Partner;
 
 class PartnersRepository
 {

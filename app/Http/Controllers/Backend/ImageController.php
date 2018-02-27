@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Gallery;
-use App\Image;
+use App\Http\Requests\imageRequest;
+use App\Models\Gallery;
+use App\Models\Image;
 use App\Repositories\ImageRepository;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -96,14 +97,8 @@ class ImageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request, Gallery $id)
+    public function store(imageRequest $request, Gallery $id)
     {
-
-        $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required'
-        ]);
-
         $image = new Image;
         $image->gallery_id = $id->id;
         $image->title =  $request->title;
@@ -145,15 +140,12 @@ class ImageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request,Image $id)
+    public function update(imageRequest $request,Image $id)
     {
+
         $gallery = $this->imageRepository->GalleryNameAndId($id->id);
 
-        $this->validate($request, [
-            'title' => 'required',
-            'description' => 'required'
-        ]);
-         $id->slug=null;
+        $id->slug=null;
         $id->title = $request->title;
         if($request->hasFile('image')) {
             if($request->file('image')->isValid()) {

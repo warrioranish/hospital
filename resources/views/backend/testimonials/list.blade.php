@@ -88,7 +88,7 @@
                                     </div>
                                     <button type="button" id="update" class="btn btn-fill btn-rose">Update</button>
                                 </div>
-                            @else
+                            @endif
                         </div>
                     </form>
                     @if(isset($testimonials))

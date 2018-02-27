@@ -57,13 +57,13 @@
                                                     <td>{{$s->title}}</td>
                                                     <td>{{ $s->icon }}<img class="thumbnail" src="{{ asset('uploads/images/services/icon/'.$s->icons) }}" style="width:72px;" alt="" ></td>
                                                     <td>{{ $s->caption }}</td>
-                                                    <td><img class="thumbnail" src="{{ asset('uploads/images/services/image/thumbnail/'.$s->thumbnail) }}" style="width: 100px;" alt="" ></td>
+                                                    <td><img class="thumbnail" src="{{ asset('uploads/images/services/image/thumbnail/'.$s->thumbnail) }}" style="width: 150px;" alt="" ></td>
                                                     <td>{{($s->status == 1) ? "active" : "inactive"}}</td>
                                                     <td class="td-actions">
-                                                        <a type="button" rel="tooltip" class="btn btn-success btn-round" href="" title="edit partner">
+                                                        <a type="button" rel="tooltip" class="btn btn-success btn-round" href="{{ url('admin/services/edit/'. $s->id) }}" title="edit service">
                                                             <i class="material-icons">edit</i>
                                                         </a>
-                                                        <button type="button" rel="tooltip" class="btn btn-danger btn-round delete-partner" title="delete partner" data-href=""><i class="material-icons">delete</i></button>
+                                                        <button type="button" rel="tooltip" class="btn btn-danger btn-round delete-partner" title="delete service" data-href="{{ url('admin/services/delete/'.$s->id) }}"><i class="material-icons">delete</i></button>
                                                     </td>
                                                 </tr>
                                             @endforeach

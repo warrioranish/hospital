@@ -158,6 +158,12 @@ Route::group(['prefix'=>'admin', 'middleware' => 'auth'], function(){
 
     Route::post('services/store', 'Backend\ServiceController@store')->name('storeservices');
 
+    Route::get('services/edit/{id}', 'Backend\ServiceController@edit')->name('editservices');
+
+    Route::patch('services/update/{id}', 'Backend\ServiceController@update')->name('updateservices');
+
+    Route::delete('services/delete/{id}', 'Backend\ServiceController@destroy')->name('deleteservices');
+
     //departments
     Route::get('departments', 'Backend\Department@index')->name('departments');
 

@@ -2,7 +2,7 @@
 
 namespace App\Providers;
 
-use App\Image;
+use App\Models\Image;
 use Illuminate\Support\Facades\Route;
 use Illuminate\Foundation\Support\Providers\RouteServiceProvider as ServiceProvider;
 

@@ -2,7 +2,7 @@
 
 @section('content')
 
-    @include('frontend.slider')
+    @include('frontend.sliders.slider')
 
     <section class="ls ms section_padding_25 page_info_banners columns_padding_0 columns_margin_0">
         <div class="container">
@@ -847,8 +847,8 @@
         </div>
     </section>
 
-    @include('frontend.testimonials')
+    @include('frontend.testimonial.testimonials')
 
-    @include('frontend.partners')
+    @include('frontend.partners.partners')
 
 @endsection
