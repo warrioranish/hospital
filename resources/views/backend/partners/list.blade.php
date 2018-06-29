@@ -30,7 +30,7 @@
                                             <th width="5%">
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="optionsCheckboxes" id="checkall">
+                                                        <input type="checkbox" class="checkbox" name="optionsCheckboxes" id="checkall">
                                                     </label>
                                                 </div>
                                             </th>

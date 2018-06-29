@@ -105,7 +105,7 @@ class ImageController extends Controller
         if($request->hasFile('image')) {
             if($request->file('image')->isValid()){
                 $file = $request->file('image');
-                $filename = date('ymdHis').'_'. rand(1, 9999999999) . $file->getClientOriginalName();
+                $filename = date('ymdHis').'_'. rand(1, 99999) . $file->getClientOriginalName();
                 $destination_path = public_path() . '/uploads/images/gallery';
                 $file->move($destination_path, $filename);
             }

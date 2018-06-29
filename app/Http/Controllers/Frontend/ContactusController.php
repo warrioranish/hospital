@@ -24,7 +24,7 @@ class ContactusController extends Controller
                 'email' => 'required',
                 'subject' => 'required',
                 'message'=> 'required',
-                'g-recaptcha-response' => 'required|captcha',
+                'g-recaptcha-response' => 'required',
             ]);
 
             Contact::create($request->all());

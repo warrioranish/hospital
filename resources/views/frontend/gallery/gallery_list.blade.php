@@ -64,7 +64,7 @@
                         <div class="col-sm-12 text-center">
                             <div class="topmargin_10">
                                 @if(isset($images))
-                                    {{ $images->links('vendor.pagination.default') }}
+                                    {{ $images->links('vendor.pagination.bootstrap-4.blade.php') }}
                                 @endif
                             </div>
                         </div>

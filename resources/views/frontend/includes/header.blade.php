@@ -66,7 +66,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-sm-4 col-sm-push-4 text-center">
-                        <a href="../" class="logo">
+                        <a href="{{ route('home') }}" class="logo">
                             <img src="{{asset('theme/images/logo.png')}}" alt="">
                         </a>
                     </div>

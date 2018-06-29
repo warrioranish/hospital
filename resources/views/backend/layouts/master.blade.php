@@ -67,13 +67,13 @@
                     <script>
                         document.write(new Date().getFullYear())
                     </script>
-                    <a href="http://www.creative-tim.com">Creative Tim</a>, all rights reserved.
+                    {{--<a href="http://www.creative-tim.com">Creative Tim</a>, all rights reserved.--}}
                 </p>
             </div>
         </footer>
     </div>
 </div>
-@include('backend.includes.fixedPlugin')
+{{--@include('backend.includes.fixedPlugin')--}}
 
 </body>
 
